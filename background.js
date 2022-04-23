@@ -30,15 +30,33 @@ The bookmarks are returned as an array of objects. Each bookmark is an object wi
 
 id: The ID of
 */
+// ! Function to retrieve bookmarks from node tree
 const getBookmarks = () =>{
     chrome.bookmarks.getTree(function(bmTree){
         bmTree.forEach(function(node){
             console.log(node);
             // * Variables are hardcoded for development
+            // * reaches Resources folder in Coding Folder
+            // TODO: declare variable = to userInput from bookmark tree
             let list = node.children[0].children[2].children[1];
             console.log(list);
+            let bkmk = [
+                list.children[1].title,
+                 list.children[1].url
+            ];
+            console.log(bkmk);
+            // Retrieve bookmarks title and url
+            // for (let i = 0; i < list.length; i++){
+
+            // }
         });
     })
 };
+
+// ! Function to print or return bookmarks to popup.html
+const printBookmarks = () => {
+
+}
+
 
 getBookmarks();
