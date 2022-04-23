@@ -34,6 +34,9 @@ const getBookmarks = () =>{
     chrome.bookmarks.getTree(function(bmTree){
         bmTree.forEach(function(node){
             console.log(node);
+            // * Variables are hardcoded for development
+            let list = node.children[0].children[2].children[1];
+            console.log(list);
         });
     })
 };
