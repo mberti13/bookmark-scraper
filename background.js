@@ -18,18 +18,8 @@ let bookmarks = [];
 // }
 
 // ? TODO: retrieve bookmarks from chrome user 
+// ? Either a type input or find a input type for file that works with bookmarks
 
-/*
-Here's what the selected code is doing:
-1.First, it gets the bookmarks from the user's computer.
-2. Then, it loops through the bookmarks and prints them to the console.
-
-The code is pretty straightforward. The only thing to note is that the bookmarks are returned as an array of objects.
-
-The bookmarks are returned as an array of objects. Each bookmark is an object with the following properties:
-
-id: The ID of
-*/
 // ! Function to retrieve bookmarks from node tree
 const getBookmarks = () =>{
     chrome.bookmarks.getTree(function(bmTree){
@@ -40,23 +30,23 @@ const getBookmarks = () =>{
             // TODO: declare variable = to userInput from bookmark tree
             let list = node.children[0].children[2].children[1];
             console.log(list);
-            let bkmk = [
-                list.children[1].title,
-                 list.children[1].url
-            ];
-            console.log(bkmk);
             // Retrieve bookmarks title and url
-            // for (let i = 0; i < list.length; i++){
+            for (let i = 0; i < list.children.length; i++){
+                var bkmk = [list.children[i].title, list.children[i].url];
 
-            // }
+                // console.log(bkmk);
+                // * bookmarks array now has url and title of bookmarks in location
+                bookmarks.push(bkmk);          
+            }; 
+            console.log(bookmarks);
         });
     })
 };
 
-// ! Function to print or return bookmarks to popup.html
-const printBookmarks = () => {
+// // ! Function to print or return bookmarks to popup.html
+// const printBookmarks = (bookmarks) => {
 
-}
+// }
 
 
 getBookmarks();
